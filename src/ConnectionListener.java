@@ -13,7 +13,7 @@ public class ConnectionListener implements Runnable {
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
-			System.out.println("The port number is invalid and the listening socket couldn't established. " +
+			System.out.println("The port number is invalid and the listening socket couldn't be established. " +
 					"Quiting the program.");
 			System.exit(1);		
 		}
