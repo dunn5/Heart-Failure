@@ -1,9 +1,3 @@
 public class MessageReceiver {
-
-
-
-
-
-
-//this is a different comment
 }
+//this is a comment
