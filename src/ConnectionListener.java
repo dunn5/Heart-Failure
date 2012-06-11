@@ -9,7 +9,10 @@ public class ConnectionListener implements Runnable {
 	
 	private ServerSocket serverSocket;
 	
-	public ConnectionListener(int port) {
+	private int waitPeriod;
+	
+	public ConnectionListener(int port, int waitPeriod) {
+		this.waitPeriod = waitPeriod;
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
@@ -33,6 +36,9 @@ public class ConnectionListener implements Runnable {
 		while (true) {
 			try {
 				Socket receiverSocket = serverSocket.accept();
+				MessageReceiver messageReceiver = new MessageReceiver(receiverSocket, waitPeriod);
+				Thread messageReceiverThread = new Thread(messageReceiver);
+				messageReceiverThread.start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
